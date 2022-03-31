@@ -136,26 +136,26 @@ static void render_cat(void) {
 
 // Host Keyboard Layer Status
 static void render_layer_info(void) {
+    if (is_oled_on()){
+      switch (get_highest_layer(layer_state)) {
 
-    switch (get_highest_layer(layer_state)) {
+          case QWERTY_LAYER:
+              oled_write_P(PSTR("QWERTY    "), false);
+              break;
+          case FUNCT1_LAYER:
+              oled_write_P(PSTR("FUNCTION 1"), false);
+              break;
+          case FUNCT2_LAYER:
+              oled_write_P(PSTR("FUNCTION 2"), false);
+              break;
+          case FUNCT3_LAYER:
+              oled_write_P(PSTR("FUNCTION 3"), false);
+              break;
+          default:
+              oled_write_P(PSTR("UNDEFINED "), false);
 
-        case QWERTY_LAYER:
-            oled_write_P(PSTR("QWERTY    "), false);
-            break;
-        case FUNCT1_LAYER:
-            oled_write_P(PSTR("FUNCTION 1"), false);
-            break;
-        case FUNCT2_LAYER:
-            oled_write_P(PSTR("FUNCTION 2"), false);
-            break;
-        case FUNCT3_LAYER:
-            oled_write_P(PSTR("FUNCTION 3"), false);
-            break;
-        default:
-            oled_write_P(PSTR("UNDEFINED "), false);
-
+      }
     }
-
 }
 
 bool oled_task_user(void) {
@@ -178,7 +178,7 @@ bool oled_task_user(void) {
             oled_clear();
             isFromWPM = true;
         }
-		oled_write_P(led_state.caps_lock ? PSTR("=CAP= ") : PSTR("===== "), false);
+        oled_write_P(led_state.caps_lock ? PSTR("=CAP= ") : PSTR("===== "), false);
         oled_write_P(led_state.num_lock ? PSTR(" =NUM= ") : PSTR(" ===== "), false);
         oled_write_P(led_state.scroll_lock ? PSTR(" =SCR=\n") : PSTR(" =====\n"), false);
 
