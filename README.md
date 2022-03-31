@@ -1,9 +1,10 @@
-# gopolar-gg87
+# Gopolar GG87 Firmware QMK/VIA
 
 It works, I guess.
 
 No clue why RGUI and FN are swapped.
 
-OLED timeout 60s.
+OLED timeout 60s. 
+FN + \ to swap animations.
 
-I can delete this if GoPolar ever decide to release official version.
+I can delete this if Gopolar ever decide to release official version.
