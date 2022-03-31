@@ -174,7 +174,7 @@ bool oled_task_user(void) {
     wpm_counter[0] =  m / 10 ? '0' + m / 10 : '0';
 
     if (wpm) {
-		if (!isFromWPM) {
+		    if (!isFromWPM) {
             oled_clear();
             isFromWPM = true;
         }
