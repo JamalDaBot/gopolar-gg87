@@ -12,6 +12,7 @@ enum custom_keycodes {
 };
 
 bool wpm = false;
+bool oled_timeout_reset = false;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -50,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-
+    oled_timeout_reset = true;
     switch (keycode) {
         case WPM:
             if (record->event.pressed) {
@@ -113,13 +114,14 @@ static void render_cat(void) {
 
     }
 
-    if (get_current_wpm() != 000) {
+    if (oled_timeout_reset) {
+      oled_timeout_reset = false;
       oled_on();
-        if (timer_elapsed32(anim_timer) > ANIM_FRAME_DURATION) {
-            anim_timer = timer_read32();
-            animation_phase();
-        }
-        anim_sleep = timer_read32();
+      if (timer_elapsed32(anim_timer) > ANIM_FRAME_DURATION) {
+          anim_timer = timer_read32();
+          animation_phase();
+      }
+      anim_sleep = timer_read32();
 
     } else {
       if (timer_elapsed32(anim_sleep) > OLED_TIMEOUT) {
@@ -132,7 +134,7 @@ static void render_cat(void) {
       }
     }
 
-}
+  }
 
 // Host Keyboard Layer Status
 static void render_layer_info(void) {
