@@ -58,7 +58,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Locking resynchronize hack */
 #define LOCKING_RESYNC_ENABLE
 
-#define OLED_TIMEOUT 15000
+#define OLED_TIMEOUT 60000
 
 /* disable these deprecated features by default */
 #define NO_ACTION_MACRO
