@@ -74,6 +74,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define ANIM_FRAME_DURATION 200 // how long each frame lasts in ms
 #define ANIM_SIZE 636 // number of bytes in array
 
+char wpm_counter[4];
 uint32_t anim_timer         = 0;
 uint32_t anim_sleep         = 0;
 uint8_t current_idle_frame = 0;
@@ -168,8 +169,11 @@ bool oled_task_user(void) {
     led_t led_state = host_keyboard_led_state();
 
     // WPM
-    char wpm_counter[4];
     uint16_t m = get_current_wpm();
+    if (m == 1) { //wpm bug fix
+      set_current_wpm(0);
+      m = 0;
+    }
     wpm_counter[3] = '\0';
     wpm_counter[2] = '0' + m % 10;
     wpm_counter[1] = ( m /= 10) % 10 ? '0' + (m) % 10 : (m / 10) % 10 ? '0' : '0';
