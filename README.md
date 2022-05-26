@@ -2,13 +2,15 @@
 
 QMK code for Gopolar GG-87 Taichi Mechanical Keyboard
 
-It works, I guess. Based on GG-86 source code.
+It works... I guess. Based on GG-86 source code.
 
 No clue why RGUI and FN are swapped.
 
 OLED timeout 60s. 
 
 FN + \ to swap between bongocat and basic animation.
+
+Hold ESC while plugging the keyboard to go into DFU mode.
 
 Flash using QMK tool box or however you like.
 
